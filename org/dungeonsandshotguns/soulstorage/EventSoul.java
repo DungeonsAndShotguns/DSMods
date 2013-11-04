@@ -35,7 +35,7 @@ public class EventSoul
 				Map EnNames = EnchantmentHelper.getEnchantments(player.getCurrentItemOrArmor(0));
 				for(int i= 0; i < EnNames.size(); i++)
 				{
-					if((Integer)EnNames.keySet().toArray()[i] == SoulStorage.Steel.effectId);
+					if((Integer)EnNames.keySet().toArray()[i] == SoulStorage.Steel.effectId)
 					{
 						player.addExperience(((SoulSteel)SoulStorage.Steel).XPMulti);
 					}
@@ -53,7 +53,7 @@ public class EventSoul
 				Map EnNames = EnchantmentHelper.getEnchantments(player.getCurrentItemOrArmor(0));
 				for(int i= 0; i < EnNames.size(); i++)
 				{
-					if((Integer)EnNames.keySet().toArray()[i] == SoulStorage.Steel.effectId);
+					if((Integer)EnNames.keySet().toArray()[i] == SoulStorage.Steel.effectId)
 					{
 						if(playerAttacked.experienceTotal > ((SoulSteel)SoulStorage.Steel).XPMulti)
 						{
@@ -72,4 +72,5 @@ public class EventSoul
 		}
 	}
 
+	
 }

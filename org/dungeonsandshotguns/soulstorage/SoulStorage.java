@@ -13,6 +13,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDispenser;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
@@ -49,6 +50,9 @@ public class SoulStorage
 	public static boolean PVPSoulSteel;
 	public static int SoulSteelID;
 	
+	public static Item SpikedSnow;
+	public static int SpikedSnowID;
+	
 	@SidedProxy(clientSide="org.dungeonsandshotguns.soulstorage.client.ClientProxy", serverSide="org.dungeonsandshotguns.soulstorage.CommonProxy")
     public static CommonProxy proxy;
 	
@@ -57,17 +61,44 @@ public class SoulStorage
 	{
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		
+		
 		//Add my events
-		AddEvents();
+		//AddEvents();
+		MinecraftForge.EVENT_BUS.register(new EventSoul());
 		
 		// Add new matrial
-		CreateMaterial();
+		//CreateMaterial();
+		SoulMat = new EnumHelper().addToolMaterial("Soul", 3, 1000, 6.7F, 5, 0);
 		
 		// load config file
-		LoadConfigs(config);
+		//LoadConfigs(config);
+		config.load();
+		SoulCoinID = config.get(Configuration.CATEGORY_ITEM, "SoulCoin", 6001).getInt();
+		EmptySoulCoinID = config.get(Configuration.CATEGORY_ITEM, "EmptySoulCoin", 6000).getInt();
+		CopperCoinID = config.get(Configuration.CATEGORY_ITEM, "CopperCoin", 6002).getInt();
+		IronCoinID = config.get(Configuration.CATEGORY_ITEM, "IronCoin", 6003).getInt();
+		GoldCoinID = config.get(Configuration.CATEGORY_ITEM, "GoldCoin", 6004).getInt();
+		SteelCoinID = config.get(Configuration.CATEGORY_ITEM, "SteelCoin", 6005).getInt();
+		SpikedSnowID = config.get(Configuration.CATEGORY_ITEM, "SpikedSnow", 6007).getInt();
+		int SoulSwordID = config.get(Configuration.CATEGORY_ITEM, "SoulSword", 6006).getInt();
+		int SoulSteelID = config.get("Enchantments", "SoulSteelID", 201).getInt();
+		int SoulSteel = config.get("Enchantments", "SoulSteelMultipler", 1).getInt();
+		PVPSoulSteel = config.get("Enchantments", "SoulSteelPVP", true).getBoolean(true); 
+		config.save();
 		
 		// Initilize Items
-		InitItems();
+		//InitItems();
+		EmptySoulCoin = new SoulCoin(EmptySoulCoinID).setTextureName("soulstorage:SoulCoin");
+        SoulCoin = new SoulCoinFull(SoulCoinID).setTextureName("soulstorage:SoulCoinFull");
+        CopperCoin = new CopperCoin(CopperCoinID).setTextureName("soulstorage:CopperCoin");
+        IronCoin = new IronCoin(IronCoinID).setTextureName("soulstorage:IronCoin");
+        GoldCoin = new GoldCoin(GoldCoinID).setTextureName("soulstorage:GoldCoin");
+        SteelCoin = new SteelCoin(SteelCoinID).setTextureName("soulstorage:SteelCoin");
+        //SoulSword = new SoulSword(SoulSwordID).setTextureName("Soulstorage:SoulSword");
+        Steel = new SoulSteel(SoulSteelID, 1);
+        SpikedSnow = new SpikedSnowBall(SpikedSnowID).setTextureName("soulstorage:SpikedSnowBall");
+        
+        //BlockDispenser.dispenseBehaviorRegistry.putObject(SpikedSnow, new EntitySpikedSnowball());
      }
 	
 	@EventHandler // used in 1.6.2
@@ -108,6 +139,7 @@ public class SoulStorage
 		IronCoinID = config.get(Configuration.CATEGORY_ITEM, "IronCoin", 6003).getInt();
 		GoldCoinID = config.get(Configuration.CATEGORY_ITEM, "GoldCoin", 6004).getInt();
 		SteelCoinID = config.get(Configuration.CATEGORY_ITEM, "SteelCoin", 6005).getInt();
+		SpikedSnowID = config.get(Configuration.CATEGORY_ITEM, "SpikedSnow", 6007).getInt();
 		int SoulSwordID = config.get(Configuration.CATEGORY_ITEM, "SoulSword", 6006).getInt();
 		int SoulSteelID = config.get("Enchantments", "SoulSteelID", 201).getInt();
 		int SoulSteel = config.get("Enchantments", "SoulSteelMultipler", 1).getInt();
@@ -125,6 +157,7 @@ public class SoulStorage
         SteelCoin = new SteelCoin(SteelCoinID).setTextureName("soulstorage:SteelCoin");
         //SoulSword = new SoulSword(SoulSwordID).setTextureName("Soulstorage:SoulSword");
         Steel = new SoulSteel(SoulSteelID, 1);
+        SpikedSnow = new SpikedSnowBall(SpikedSnowID).setTextureName("soulstorage:SpikedSnowBall");
 	}
 
 	private void RegisterNames()
@@ -136,6 +169,7 @@ public class SoulStorage
         LanguageRegistry.addName(GoldCoin, "Gold Coin");
         LanguageRegistry.addName(SteelCoin, "Steel Coin");
         //LanguageRegistry.addName(SoulSword, "Soul Blade");
+        LanguageRegistry.addName(SpikedSnow, "Spiked Snow Ball");
 	}
 
 	private void CraftingRecp()
@@ -163,6 +197,10 @@ public class SoulStorage
         //Gold to Steel
         ItemStack GolCoin = new ItemStack(GoldCoin);
         GameRegistry.addShapedRecipe(new ItemStack(SteelCoin), "CCC", "CCC", "CCC", 'C', GolCoin);
+        
+        ItemStack SnowB = new ItemStack(Item.snowball);
+        ItemStack CobbleS = new ItemStack(Block.cobblestone);
+        GameRegistry.addShapedRecipe(new ItemStack(SpikedSnow, 16), "SSS", "SCS", "SSS", 'S', SnowB, 'C', CobbleS);
 	}
 }
 
