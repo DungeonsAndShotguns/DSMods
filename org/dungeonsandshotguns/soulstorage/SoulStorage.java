@@ -22,7 +22,7 @@ import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 
-@Mod(modid="SoulStorage", name="Soul Storage", version="1.6.4.2")
+@Mod(modid="SoulStorage", name="Soul Storage", version="1.6.4.3")
 @NetworkMod(clientSideRequired=true)
 public class SoulStorage 
 {

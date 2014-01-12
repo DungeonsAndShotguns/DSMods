@@ -34,8 +34,11 @@ public class EntitySpikedSnowball extends EntitySnowball
 	            {
 	                b0 = 3;
 	            }
-
-	            par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float)1);
+	            
+	            if(par1MovingObjectPosition.entityHit != null)
+	            {
+	            	par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float)0.5);
+	            }
 	        }
 
 	        for (int i = 0; i < 8; ++i)

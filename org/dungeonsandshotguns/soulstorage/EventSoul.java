@@ -30,14 +30,18 @@ public class EventSoul
 		{
 			player = (EntityPlayer)sourceEnt.getEntity();
 			
-			if(player.getCurrentItemOrArmor(0).isItemEnchanted() == true) //inventoryContainer.getSlot(player.inventory.currentItem).getStack().isItemEnchanted())
+			if (player.getHeldItem() != null)
 			{
-				Map EnNames = EnchantmentHelper.getEnchantments(player.getCurrentItemOrArmor(0));
-				for(int i= 0; i < EnNames.size(); i++)
+				if(player.getCurrentItemOrArmor(0).isItemEnchanted() == true) //inventoryContainer.getSlot(player.inventory.currentItem).getStack().isItemEnchanted())
 				{
-					if((Integer)EnNames.keySet().toArray()[i] == SoulStorage.Steel.effectId)
+					Map EnNames = EnchantmentHelper.getEnchantments(player.getCurrentItemOrArmor(0));
+					for(int i= 0; i < EnNames.size(); i++)
 					{
-						player.addExperience(((SoulSteel)SoulStorage.Steel).XPMulti);
+						if((Integer)EnNames.keySet().toArray()[i] == SoulStorage.Steel.effectId)
+						{
+							player.addExperience(((SoulSteel)SoulStorage.Steel).XPMulti);
+							player.attackEntityFrom(DamageSource.generic, (float)0.5);
+						}
 					}
 				}
 			}
@@ -62,6 +66,7 @@ public class EventSoul
 							
 							playerAttacked.experienceLevel = 0;
 							playerAttacked.experience = 0;
+							playerAttacked.experienceTotal = 0;
 							playerAttacked.addExperience(ToGiveBack);
 							
 							player.addExperience(XPTaken);
@@ -72,5 +77,4 @@ public class EventSoul
 		}
 	}
 
-	
 }
