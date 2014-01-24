@@ -21,18 +21,23 @@ Boat and Minecart Enchantments – Adds new enchantmets for both boats and minec
 FAQ
 
 Why Coins
+
 One of my goals is to have players use exprince for battering. Coins just made since.
 
 You know Mojang will be adding XP Books
+
 ...yep, still going to add the coins. If every modder stop doing somthing becouse the orignal game auther might add somthing simular to the game than half the mods out there would not exist.
 
 When Will it be ready
+
 When it is done. Don't you love that answer.
 
 Will this be modloder compatable
+
 Nope, like all other DS Minecraft mods this will require Minecraft Forge.
 
 Where can I find the download
+
 At the moment it will tested on the DS Minecraft. When it is ready there will be a link in this forum post.
 
 Change Log
