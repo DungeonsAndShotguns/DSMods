@@ -52,24 +52,27 @@ public class EventSoul
 			player = (EntityPlayer)sourceEnt.getEntity();
 			playerAttacked = (EntityPlayer)attacked;
 			
-			if(player.getCurrentItemOrArmor(0).isItemEnchanted() == true)
+			if (player.getHeldItem() != null)
 			{
-				Map EnNames = EnchantmentHelper.getEnchantments(player.getCurrentItemOrArmor(0));
-				for(int i= 0; i < EnNames.size(); i++)
+				if(player.getCurrentItemOrArmor(0).isItemEnchanted() == true)
 				{
-					if((Integer)EnNames.keySet().toArray()[i] == SoulStorage.Steel.effectId)
+					Map EnNames = EnchantmentHelper.getEnchantments(player.getCurrentItemOrArmor(0));
+					for(int i= 0; i < EnNames.size(); i++)
 					{
-						if(playerAttacked.experienceTotal > ((SoulSteel)SoulStorage.Steel).XPMulti)
+						if((Integer)EnNames.keySet().toArray()[i] == SoulStorage.Steel.effectId)
 						{
-							int XPTaken = ((SoulSteel)SoulStorage.Steel).XPMulti;
-							int ToGiveBack = playerAttacked.experienceTotal - XPTaken;
+							if(playerAttacked.experienceTotal > ((SoulSteel)SoulStorage.Steel).XPMulti)
+							{
+								int XPTaken = ((SoulSteel)SoulStorage.Steel).XPMulti;
+								int ToGiveBack = playerAttacked.experienceTotal - XPTaken;
 							
-							playerAttacked.experienceLevel = 0;
-							playerAttacked.experience = 0;
-							playerAttacked.experienceTotal = 0;
-							playerAttacked.addExperience(ToGiveBack);
+								playerAttacked.experienceLevel = 0;
+								playerAttacked.experience = 0;
+								playerAttacked.experienceTotal = 0;
+								playerAttacked.addExperience(ToGiveBack);
 							
-							player.addExperience(XPTaken);
+								player.addExperience(XPTaken);
+							}
 						}
 					}
 				}

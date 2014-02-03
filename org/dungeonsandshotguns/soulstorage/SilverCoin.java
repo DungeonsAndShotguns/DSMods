@@ -4,23 +4,22 @@ import cpw.mods.fml.common.Mod.Instance;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public class GoldCoin extends Item 
+public class SilverCoin extends Item
 {
-	@Instance("GoldCoin")
-	private final static Item GoldCoin = new GoldCoin(SoulStorage.GoldCoinID);
+	@Instance("SilverCoin")
+	private final static Item SilverCoin = new SilverCoin(SoulStorage.SilverCoinID);
 	
-	public GoldCoin(int id) 
+	public SilverCoin(int id) 
 	{
         super(id);
         
         setMaxStackSize(99);
         setCreativeTab(CreativeTabs.tabMisc);
-        setUnlocalizedName("GoldCoin");
+        setUnlocalizedName("SilverCoinCoin");
 	}
 	
-	public static int BaseEconValue()
+	public int BaseEconValue()
 	{
-		return 100;
+		return 1000;
 	}
-
 }
