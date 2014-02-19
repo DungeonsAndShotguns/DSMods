@@ -18,7 +18,7 @@ Exp Bottle – Levels from coins can be transfered to a Bottle O Enchanting.
 Soul Bench – Allows a player to transfer and enchanmet from one item to another using a custome work bench. The bench will use player experince as a cost.
 Boat and Minecart Enchantments – Adds new enchantmets for both boats and minecarts.
 
-http://github.com/F1tZ81/SoulStorage.wiki.git
+https://github.com/F1tZ81/SoulStorage/wiki
 
 FAQ
 
