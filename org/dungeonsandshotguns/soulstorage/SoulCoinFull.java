@@ -28,6 +28,7 @@ public class SoulCoinFull extends Item
 	{
 		if(par1ItemStack.getItemDamage() > 0)
 		{
+			
 			par3EntityPlayer.addExperience(par1ItemStack.getItemDamage());
 			return new ItemStack(SoulStorage.EmptySoulCoin);
 		}
