@@ -35,6 +35,7 @@ public class SoulCoin extends Item
 		if (par1ItemStack.getItemDamage() < 1 && par3EntityPlayer.experienceTotal > 0)
 		{
 			ItemStack Coin = new ItemStack(SoulStorage.SoulCoin);
+			Coin.setItemDamage(0);
 			Coin.setItemDamage(Math.round(par3EntityPlayer.experienceTotal));
 			Coin.setItemName("Soul Coin " +Integer.toString(par3EntityPlayer.experienceLevel)+ " " + Integer.toString(par3EntityPlayer.experienceTotal));
 			par3EntityPlayer.experienceTotal = 0;
