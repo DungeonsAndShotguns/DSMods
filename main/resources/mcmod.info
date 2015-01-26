@@ -1,0 +1,16 @@
+[
+{
+  "modid": "dsmods",
+  "name": "Dungeons and Shotguns Mods",
+  "description": "A set of mods made for Dungeons and Shotguns community.",
+  "version": "",
+  "mcversion": "${mcversion}",
+  "url": "http://dungeonsandshotguns.org/",
+  "updateUrl": "",
+  "authorList": ["F1tZy"],
+  "credits": "The DS Minecraft Community, thanks for all the fish.",
+  "logoFile": "/assets/dsmods/images/DSIcon.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
